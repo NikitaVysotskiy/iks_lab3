@@ -7,4 +7,5 @@ install:
   - pip install -r requirements.txt
 
 script:
-  python -m unittest tests.py
+  - flake8 cmdbox
+  - python -m unittest tests.py
