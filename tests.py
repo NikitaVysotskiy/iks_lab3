@@ -8,7 +8,7 @@ class TestStrMethods(unittest.TestCase):
 
     def test_join(self):
         values = ['IO-42', 'IKS', 'Lab3']
-        self.assertEqual(' '.join(values), 'IO-42IKSLab3')
+        self.assertEqual(' '.join(values), 'IO-42 IKS Lab3')
 
 
 class TestMathMethods(unittest.TestCase):
