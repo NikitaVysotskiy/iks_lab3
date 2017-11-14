@@ -41,6 +41,29 @@ class TestSlices(unittest.TestCase):
         test_list = range(10)
         self.assertEqual(list(test_list[::-1]), [9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
+        
+class Calculator:
+    @staticmethod
+    def sum(a, b):
+        return a + b
 
+    @staticmethod
+    def power(a, b):
+        return a**b
+
+
+class TestCalculator(unittest.TestCase):
+    def test_calc(self):
+        calc = Calculator()
+        self.assertEqual(calc.sum(3, 8), 11)
+        self.assertEqual(calc.power(3, 3), 27)
+
+
+class TestDict(unittest.TestCase):
+    def test_dict(self):
+        dict_test = {'key': 'value'}
+        self.assertDictEqual(dict_test, {'key': 'value'})        
+
+        
 if __name__ == '__main__':
     unittest.main()
