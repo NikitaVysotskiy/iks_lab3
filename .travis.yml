@@ -8,4 +8,5 @@ install:
 
 script:
   - flake8 cmdbox
+  - python get_cur_version.py
   - python -m unittest tests.py
