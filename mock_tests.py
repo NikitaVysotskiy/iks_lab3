@@ -189,6 +189,54 @@ class RequestMakerMock(TestCase):
 
         self.assertIsNotNone(request_mock.request_get('url'))
 
+        
+class OS:
+    @staticmethod
+    def create_file(file_name: str, startup_text: str) -> None:
+        """
+            Creates file in FileSystem with
+            name - file_name, and text - startup_text
+        """
+        with open(file_name, 'w') as f:
+            f.write(startup_text)
 
+
+class FileSystem:
+    def init(self, system):
+        self.files_count = 0
+        self.is_full = False
+        self.os = system
+
+    def get_status(self):
+        return self.is_full
+
+    def add_in_memory(self):
+        self.files_count = self.files_count + 1 if self.files_count <= 2 else 3
+        if self.files_count == 3:
+            self.is_full = True
+
+    def remove_from_memory(self):
+        self.files_count = self.files_count - 1 if self.files_count >= 0 else 0
+        if self.files_count < 3:
+            self.is_full = False
+
+    def create_file(self, file_name: str, startup_text: str) -> None:
+        self.os.create_file(file_name, startup_text)
+        self.add_in_memory()
+
+
+class FileSystemTest(TestCase):
+    @patch('mock_tests.OS')
+    def test_file_system(self, os_mock):
+        os_mock.create_file.return_value = True
+        file_system = FileSystem(os_mock)
+
+        file_system.create_file('name1', 'text1')
+        file_system.create_file('name2', 'text2')
+        file_system.create_file('name3', 'text3')
+
+        self.assertTrue(file_system.get_status())
+        
+        
 if __name__ == '__main__':
     main()
