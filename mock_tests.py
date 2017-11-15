@@ -202,7 +202,7 @@ class OS:
 
 
 class FileSystem:
-    def init(self, system):
+    def __init__(self, system):
         self.files_count = 0
         self.is_full = False
         self.os = system
