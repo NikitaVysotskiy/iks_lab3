@@ -6,10 +6,6 @@ class TestStrMethods(unittest.TestCase):
         s = 'IO-42 IKS Lab3'
         self.assertEqual(s.split(), ['IO-42', 'IKS', 'Lab3'])
 
-    def test_join(self):
-        values = ['IO-42', 'IKS', 'Lab3']
-        self.assertEqual(' '.join(values), 'IO-42 IKS Lab3')
-
 
 class TestMathMethods(unittest.TestCase):
     def test_max(self):
