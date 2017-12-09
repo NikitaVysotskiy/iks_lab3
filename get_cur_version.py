@@ -1,8 +1,20 @@
-import os 
+import time
 
-CURRENT_VERSION = os.popen('git describe --tags').read().strip()
+from version_generator import get_version
 
-with open('version.txt', 'w') as f:
-    f.write(CURRENT_VERSION)
+version = None
 
-print(CURRENT_VERSION)
+
+def main():
+    global version
+    version = get_version()
+    time.sleep(5)
+
+
+def do_something_with_version():
+    global version
+    print(version)
+
+
+if __name__ == '__main__':
+    main()
