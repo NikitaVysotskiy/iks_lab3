@@ -9,11 +9,11 @@ def main():
     global version
     version = get_version()
     time.sleep(5)
+    do_something_with_version(version)
 
 
-def do_something_with_version():
-    global version
-    print(version)
+def do_something_with_version(v):
+    print(v)
 
 
 if __name__ == '__main__':
